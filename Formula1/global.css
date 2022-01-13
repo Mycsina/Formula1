@@ -1,6 +1,15 @@
 ﻿body {
     font-family: 'Open Sans', sans-serif;
-    margin: 70px 0 70px 0;
+    margin: 56px 0 5px 0;
+}
+
+#darkToggler {
+    cursor: pointer
+}
+
+.navbar-brand {
+    transform: translateY(-2px);
+    margin-right: 20px
 }
 
 /* button default

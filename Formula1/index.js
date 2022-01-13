@@ -1,30 +1,8 @@
-﻿const RSS_URL = `https://crossorigin.me/https://www.formula1.com/content/fom-website/en/latest/all.xml`;
+﻿import * as main from "./global.js"
 
-$.ajax(RSS_URL, {
-    accepts: {
-        xml: "application/rss+xml"
-    },
+const API_KEY = "145717df27214780a7986047a583a233"
 
-    dataType: "xml",
-
-    success: function (data) {
-        $(data)
-            .find("item")
-            .each(function () {
-                const el = $(this);
-
-                const template = `
-                    <article>
-                        <img src="${el.find("link").text()}/image/large.png alt="">
-                        <h2>
-                            <a href="${el.find("link").text()}" target="_blank" rel="noopener">
-                            ${el.find("title").text()}
-                            </a>
-                        </h2>
-                    </article>
-                `;
-
-                $("#storage").body.insertAdjacentHTML("beforeend", template)
-            })
-    }
+$(document).ready(function () {
+    var dark = JSON.parse(localStorage.getItem("dark")) ? JSON.parse(localStorage.getItem("dark")) : false
+    main.darkToggle(dark)
 })

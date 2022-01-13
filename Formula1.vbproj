@@ -109,10 +109,11 @@
     <Content Include="Formula1\driverDetails.js" />
     <Content Include="Formula1\drivers.html" />
     <Content Include="Formula1\drivers.js" />
+    <Content Include="Formula1\index.css" />
     <Content Include="Formula1\index.html" />
     <Content Include="Formula1\index.js" />
-    <Content Include="Formula1\myCSS.css" />
-    <Content Include="Formula1\myScript.js" />
+    <Content Include="Formula1\global.css" />
+    <Content Include="Formula1\global.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />

@@ -1,4 +1,8 @@
-﻿// ViewModel KnockOut
+﻿import * as main from "./global.js"
+
+var dark = main.get() ? main.get() : true
+
+// ViewModel KnockOut
 var vm = function () {
     console.log('ViewModel initiated...');
     //---Variáveis locais
@@ -46,7 +50,7 @@ var vm = function () {
     self.activate = function (id) {
         console.log('CALL: getDrivers...');
         var composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
-        ajaxHelper(composedUri, 'GET').done(function (data) {
+        main.ajaxHelper(composedUri, 'GET', self).done(function (data) {
             console.log(data);
             hideLoading();
             self.records(data.List);
@@ -60,22 +64,6 @@ var vm = function () {
         });
     };
     //--- Internal functions
-    function ajaxHelper(uri, method, data) {
-        self.error(''); // Clear error message
-        return $.ajax({
-            type: method,
-            url: uri,
-            dataType: 'json',
-            contentType: 'application/json',
-            data: data ? JSON.stringify(data) : null,
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.log("AJAX Call[" + uri + "] Fail...");
-                hideLoading();
-                self.error(errorThrown);
-            }
-        });
-    }
-
     function sleep(milliseconds) {
         const start = Date.now();
         while (Date.now() - start < milliseconds);
@@ -124,5 +112,8 @@ var vm = function () {
 
 $(document).ready(function () {
     console.log("ready!");
+    console.log(dark)
+    $(".nav-link").click(function (state) { localStorage.setItem("dark", state); alert("store") })
+    main.darkToggle(dark)
     ko.applyBindings(new vm());
 });

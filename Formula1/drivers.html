@@ -32,12 +32,12 @@
     </nav>
     <!-- Working Area -->
     <div class="container">
-        <div class="border-bottom pt-4 pb-2 mb-3">
+        <div class="border-bottom pt-4 pb-2 mb-3 darken">
             <h2 data-bind="text:displayName"></h2>
         </div>
         <!-- ko if:records().length > 0 -->
         <div class="row small">
-            <p class=" col-4 mr-auto pt-2">
+            <p class=" col-4 mr-auto pt-2 darken">
                 <span data-bind="html: 'Page: ' + currentPage() + ' of ' + totalPages()"></span>
                 <br />
                 <span data-bind="html: 'Drivers: '+ fromRecord() + '-' + toRecord() + ' of ' + totalRecords()"></span>
@@ -74,7 +74,7 @@
                     <th scope="col" class="text-right"></th>
                 </tr>
             </thead>
-            <tbody data-bind="foreach: records">
+            <tbody class="" data-bind="foreach: records">
                 <tr>
                     <td class="align-middle" data-bind="text:DriverId"></td>
                     <td class="align-middle" data-bind="text:Name"></td>

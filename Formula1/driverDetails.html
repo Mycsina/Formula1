@@ -32,32 +32,34 @@
     </nav>
     <!-- Work Area-->
     <div class="container">
-        <div class="py-2 mb-3">
-            <h2 data-bind="text:Name() +' ['+DriverId()+']'"></h2>
+        <div class="py-2 mb-3 darken">
+            <h2 data-bind="text:Name()"></h2>
         </div>
         <!-- ko if:Name().length > 0 -->
+        <div class="row m-0">
+        <div class="col-7">
         <table class="table table-sm small">
-            <tr class="row">
-                <th class="col-md-2">Driver Id</th>
-                <td class="col-md-10" data-bind="text: DriverId"></td>
-            </tr>
-            <tr class="row">
-                <th class="col-md-2">Nickname</th>
-                <td class="col-md-10" data-bind="text: DriverRef"></td>
-            </tr>
-            <tr class="row" data-bind="visible: ImageUrl() != '' && ImageUrl() != null">
-                <th class="col-md-2">Image</th>
-                <td class="col-md-10">
-                    <img class="img-thumbnail col-2" data-bind="attr:{src: ImageUrl}"><br />
-                </td>
-            </tr>
             <tr class="row">
                 <th class="col-md-2">Name</th>
                 <td class="col-md-10" data-bind="text: Name"></td>
             </tr>
             <tr class="row">
+                <th class="col-md-2">Nickname</th>
+                <td class="col-md-10" data-bind="text: DriverRef"></td>
+            </tr>
+            <tr class="row">
                 <th class="col-md-2">Nationality</th>
                 <td class="col-md-10" data-bind="text: Nationality"></td>
+            </tr>
+<!--            <tr class="row" data-bind="visible: ImageUrl() != '' && ImageUrl() != null">
+                <th class="col-md-2">Image</th>
+                <td class="col-md-10">
+                    <img class="img-thumbnail col-2" data-bind="attr:{src: ImageUrl}"><br />
+                </td>
+            </tr>-->
+            <tr class="row">
+                <th class="col-md-2">Driver Id</th>
+                <td class="col-md-10" data-bind="text: DriverId"></td>
             </tr>
             <tr class="row" data-bind="visible: Number() != '' && Number() != null">
                 <th class="col-md-2">Number</th>
@@ -67,15 +69,33 @@
                 <th class="col-md-2">Url</th>
                 <td class="col-md-10"><a class="text-muted text-decoration-none" data-bind="attr: {href: Url, target:'blank'}"><i class="fa fa-external-link"></i>[<span class="" data-bind="text: Url"></span>]</a></td>
             </tr>
-            <tr class="row">
+<!--            <tr class="row">
                 <th colspan="2">Races [<span data-bind="text: Races().length"></span>]</th>
             </tr>
             <tr>
                 <td colspan="2" class="small" data-bind="foreach: Races">
-                    <div class="border rounded d-inline-block mr-2 mb-1 p-1"><i class=" fa fa-dot-circle-o"></i><a class="text-muted text-decoration-none" data-bind="text: Name + ' ('+Year+')', attr: { href: './raceDetails?id=' + RaceId }"></a>(<span data-bind="text: RaceId"></span>)</div>
+                    <div class="border rounded d-inline-block mr-2 mb-1 p-1"><i class=" fa fa-dot-circle-o"></i><a class="text-muted text-decoration-none" data-bind="text: Name + ' ('+Year+') ', attr: { href: './raceDetails?id=' + RaceId }"></a>(<span data-bind="text: RaceId"></span>)</div>
+                </td>
+            </tr>-->
+        </table>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-2">
+            <img class="img-fluid" data-bind="attr:{src: ImageUrl() != null && ImageUrl().length != 0 ? ImageUrl() :  'portrait.png'}" style=""/>
+        </div>
+        </div>
+        <div class="container ps-0">
+            <table>
+                <tr class="row">
+                <th colspan="2">Races [<span data-bind="text: Races().length"></span>]</th>
+            </tr>
+            <tr>
+                <td colspan="2" class="small" data-bind="foreach: Races">
+                    <div class="border rounded d-inline-block mr-2 mb-1 p-1"><i class=" fa fa-flag-checkered"></i><a class="text-muted text-decoration-none" data-bind="text: ' ' + Name + ' ('+Year+') ', attr: { href: './raceDetails?id=' + RaceId }"></a>(<span data-bind="text: RaceId"></span>)</div>
                 </td>
             </tr>
-        </table>
+            </table>
+        </div>
         <!-- /ko -->
     </div>
     <!-- Modal -->

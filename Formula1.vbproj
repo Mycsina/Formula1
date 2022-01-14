@@ -114,6 +114,7 @@
     <Content Include="Formula1\index.js" />
     <Content Include="Formula1\global.css" />
     <Content Include="Formula1\global.js" />
+    <Content Include="Formula1\portrait.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />

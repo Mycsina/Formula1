@@ -1,7 +1,5 @@
 ﻿import * as main from "./global.js"
 
-var dark = main.get() ? main.get() : true
-
 // ViewModel KnockOut
 var vm = function () {
     console.log('ViewModel initiated...');
@@ -9,6 +7,7 @@ var vm = function () {
     var self = this;
     self.baseUri = ko.observable('http://192.168.160.58/Formula1/api/Drivers/Driver?id=');
     self.displayName = 'Driver Details';
+    self.missing = "./portrait.png";
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
     //--- Data Record
@@ -77,7 +76,7 @@ var vm = function () {
 };
 
 $(document).ready(function () {
-    console.log("ready!");
-    main.darkToggle(dark)
+    var dark = JSON.parse(localStorage.getItem("dark")) ? JSON.parse(localStorage.getItem("dark")) : false;
+    main.darkToggle(dark);
     ko.applyBindings(new vm());
 });

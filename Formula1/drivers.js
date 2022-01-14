@@ -1,6 +1,4 @@
-﻿import * as main from "./global.js"
-
-var dark = main.get() ? main.get() : true
+﻿import * as main from "./global.js";
 
 // ViewModel KnockOut
 var vm = function () {
@@ -111,9 +109,7 @@ var vm = function () {
 };
 
 $(document).ready(function () {
-    console.log("ready!");
-    console.log(dark)
-    $(".nav-link").click(function (state) { localStorage.setItem("dark", state); alert("store") })
-    main.darkToggle(dark)
+    var dark = JSON.parse(localStorage.getItem("dark")) ? JSON.parse(localStorage.getItem("dark")) : false;
+    main.darkToggle(dark);
     ko.applyBindings(new vm());
 });

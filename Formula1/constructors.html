@@ -37,11 +37,15 @@
         </div>
         <!-- ko if:records().length > 0 -->
         <div class="row small">
-            <p class=" col-4 mr-auto pt-2 darken">
-                <span data-bind="html: 'Page: ' + currentPage() + ' of ' + totalPages()"></span>
+            <div class="col-4 mr-auto pt-2 darken">
+                <span class="mb-5" data-bind="html: 'Page: ' + currentPage() + ' of ' + totalPages()"></span>
+                <br />
+                <button class="btn btn-danger btn-sm rounded-start fs-6">25</button>
+                <button class="btn btn-danger btn-sm rounded-top rounded-bottom fs-6" data-bind="click: pagesize(50)">50</button>
+                <button class="btn btn-danger btn-sm rounded-end fs-6" data-bind="click: pagesize(1000)">Todos</button>
                 <br />
                 <span data-bind="html: 'Drivers: '+ fromRecord() + '-' + toRecord() + ' of ' + totalRecords()"></span>
-            </p>
+            </div>
             <div class="col-8 my-0 pt-3">
                 <ul class="pagination float-end">
                     <!-- ko if: currentPage() > 5 && totalPages() > 10 -->
@@ -90,14 +94,16 @@
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header bg-dark text-light">
-                    <h5 class="modal-title" id="exampleModalLabel">
-                        <img src="../images/F1_logo.png" height="30" />
+                <div class="modal-header bg-dark text-light justify-content-center">
+                    <div class="modal-title h5" id="exampleModalLabel">
+                        <img src="https://logodownload.org/wp-content/uploads/2016/11/formula-1-logo-7.png" height="30" />
                         Loading data...
-                    </h5>
+                    </div>
                 </div>
                 <div class="modal-body text-center">
-                    <i class="fa fa-spin fa-3x fa-refresh"></i>
+                    <div class="spinner-grow text-danger" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
                 </div>
             </div>
         </div>

@@ -113,13 +113,7 @@ var vm = function () {
 $(document).ready(function () {
     var dark = JSON.parse(localStorage.getItem("dark")) ? JSON.parse(localStorage.getItem("dark")) : false;
     main.darkToggle(dark);
-    $(window).resize(function () {
-        if (window.matchMedia("(max-width: 540px)").matches) {
-            $(".pagination").addClass("pagination-sm")
-        } else {
-            $(".pagination").removeClass("pagination-sm")
-        }
-        console.log(window.matchMedia("(max-width: 540px)"))
-    })
+    main.pagination();
+    main.sortTable();
     ko.applyBindings(new vm());
 });

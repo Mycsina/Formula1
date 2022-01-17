@@ -12,6 +12,24 @@
     margin-right: 20px
 }
 
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: firebrick;
+    border-color: firebrick;
+}
+
+.page-link {
+    color: firebrick;
+}
+
+table, th, td {
+    border: 1px none;
+}
+
+th {
+    cursor: pointer;
+}
 /* button default
 ---------------------------- */
 .btn-default {
@@ -20,15 +38,15 @@
     border-color: #ccc;
 }
 
-    .btn-default:focus {
-        color: #333;
-        background-color: #e6e6e6;
-        border-color: #8c8c8c;
-    }
+.btn-default:focus {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #8c8c8c;
+}
 
-    .btn-default:active,
-    .btn-default:hover {
-        color: #333;
-        background-color: #e6e6e6;
-        border-color: #adadad;
-    }
+.btn-default:active,
+.btn-default:hover {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+}

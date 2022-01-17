@@ -12,7 +12,7 @@ var vm = function () {
     self.passingMessage = ko.observable('');
     self.records = ko.observableArray([]);
     self.currentPage = ko.observable(1);
-    self.pagesize = ko.observable(20);
+    self.pagesize = ko.observable(25);
     self.totalRecords = ko.observable(50);
     self.hasPrevious = ko.observable(false);
     self.hasNext = ko.observable(false);
@@ -113,13 +113,7 @@ var vm = function () {
 $(document).ready(function () {
     var dark = JSON.parse(localStorage.getItem("dark")) ? JSON.parse(localStorage.getItem("dark")) : false;
     main.darkToggle(dark);
-    //$(window).resize(function () {
-    //    if (window.matchMedia("(max-width: 540px)").matches) {
-    //        $(".pagination").addClass("pagination-sm")
-    //    } else {
-    //        $(".pagination").removeClass("pagination-sm")
-    //    }
-    //    console.log(window.matchMedia("(max-width: 540px)"))
-    //})
+    main.pagination();
+    main.sortTable();
     ko.applyBindings(new vm());
 });

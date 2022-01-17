@@ -45,7 +45,7 @@
             </tr>
             <tr class="row">
                 <th class="col-md-2">Nickname</th>
-                <td class="col-md-10" data-bind="text: DriverRef"></td>
+                <td class="col-md-10" data-bind="text: ConstructorRef"></td>
             </tr>
             <tr class="row">
                 <th class="col-md-2">Nationality</th>
@@ -58,8 +58,8 @@
                 </td>
             </tr>-->
 <!--            <tr class="row">
-                <th class="col-md-2">Driver Id</th>
-                <td class="col-md-10" data-bind="text: DriverId"></td>
+                <th class="col-md-2">Constructor Id</th>
+                <td class="col-md-10" data-bind="text: ConstructorId"></td>
             </tr>-->
             <tr class="row" data-bind="visible: Number() != '' && Number() != null">
                 <th class="col-md-2">Number</th>
@@ -84,17 +84,30 @@
             <img class="img-fluid" data-bind="attr:{src: ImageUrl() != null && ImageUrl().length != 0 ? ImageUrl() :  'portrait.png'}" style=""/>
         </div>
         </div>
-        <div class="container ps-0">
-            <table>
-                <tr class="row">
-                <th colspan="2">Races [<span data-bind="text: Races().length"></span>]</th>
-            </tr>
-            <tr>
-                <td colspan="2" class="small" data-bind="foreach: Races">
-                    <div class="border rounded d-inline-block mr-2 mb-1 p-1"><i class=" fa fa-flag-checkered"></i><a class="text-muted text-decoration-none" data-bind="text: ' ' + Name + ' ('+Year+') ', attr: { href: './raceDetails?id=' + RaceId }"></a></div>
-                </td>
-            </tr>
-            </table>
+        <div class="container ps-0 row row-cols-2">
+            <div class="">
+                <table>
+                    <tr class="row">
+                        <th colspan="2">Races [<span data-bind="text: Races().length"></span>]</th>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="small" data-bind="foreach: Races">
+                            <div class="border rounded d-inline-block mr-2 mb-1 p-1"><i class=" fa fa-flag-checkered"></i><a class="text-muted text-decoration-none" data-bind="text: ' ' + Name + ' ('+Year+') ', attr: { href: './raceDetails.html?id=' + RaceId }"></a></div>
+                        </td>
+                </table>
+            </div>
+            <div class="">
+                <table>
+                    <tr class="row">
+                        <th colspan="2">Drivers [<span data-bind="text: Drivers().length"></span>]</th>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="small" data-bind="foreach: Drivers">
+                            <div class="border rounded d-inline-block mr-2 mb-1 p-1"><i class="fa fa-id-card"></i><a class="text-muted text-decoration-none" data-bind="text: ' ' + Name, attr: { href: './driverDetails.html?id=' + DriverId}"></a></div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
         <!-- /ko -->
     </div>
@@ -127,6 +140,6 @@
     <script src="../Scripts/bootstrap.bundle.min.js"></script>
     <script src="../Scripts/knockout-3.5.1.js"></script>
     <script src="../Scripts/jquery-3.6.0.min.js"></script>
-    <script type="module" src="driverDetails.js"></script>
+    <script type="module" src="constructorDetails.js"></script>
 </body>
 </html>

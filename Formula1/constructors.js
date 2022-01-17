@@ -5,9 +5,9 @@ var vm = function () {
     console.log('ViewModel initiated...');
     //---Variáveis locais
     var self = this;
-    self.baseUri = ko.observable('http://192.168.160.58/Formula1/api/drivers');
+    self.baseUri = ko.observable('http://192.168.160.58/Formula1/api/constructors');
     //self.baseUri = ko.observable('http://localhost:62595/api/drivers');
-    self.displayName = 'Drivers List';
+    self.displayName = 'Constructors';
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
     self.records = ko.observableArray([]);
@@ -113,13 +113,13 @@ var vm = function () {
 $(document).ready(function () {
     var dark = JSON.parse(localStorage.getItem("dark")) ? JSON.parse(localStorage.getItem("dark")) : false;
     main.darkToggle(dark);
-    $(window).resize(function () {
-        if (window.matchMedia("(max-width: 540px)").matches) {
-            $(".pagination").addClass("pagination-sm")
-        } else {
-            $(".pagination").removeClass("pagination-sm")
-        }
-        console.log(window.matchMedia("(max-width: 540px)"))
-    })
+    //$(window).resize(function () {
+    //    if (window.matchMedia("(max-width: 540px)").matches) {
+    //        $(".pagination").addClass("pagination-sm")
+    //    } else {
+    //        $(".pagination").removeClass("pagination-sm")
+    //    }
+    //    console.log(window.matchMedia("(max-width: 540px)"))
+    //})
     ko.applyBindings(new vm());
 });

@@ -89,6 +89,9 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Formula1\constructorDetails.html" />
+    <Content Include="Formula1\constructorDetails.js" />
+    <Content Include="Formula1\constructors.js" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -105,8 +108,10 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Formula1\constructors.html" />
     <Content Include="Formula1\driverDetails.html" />
     <Content Include="Formula1\driverDetails.js" />
+    <Content Include="Formula1\drivers.css" />
     <Content Include="Formula1\drivers.html" />
     <Content Include="Formula1\drivers.js" />
     <Content Include="Formula1\index.css" />

@@ -114,12 +114,13 @@
     <Content Include="Formula1\drivers.css" />
     <Content Include="Formula1\drivers.html" />
     <Content Include="Formula1\drivers.js" />
+    <Content Include="Images\generic_car.svg" />
     <Content Include="Formula1\index.css" />
     <Content Include="Formula1\index.html" />
     <Content Include="Formula1\index.js" />
     <Content Include="Formula1\global.css" />
     <Content Include="Formula1\global.js" />
-    <Content Include="Formula1\portrait.png" />
+    <Content Include="Images\portrait.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />

@@ -10,7 +10,7 @@
     }
     $("#darkToggler").click(function () {
         console.log("Dark mode toggled!");
-        if (state == true) {
+        if (state) {
             $("body").removeClass("bg-dark");
             $(".navbar-dark").removeClass("navbar-dark bg-dark").addClass("navbar-light bg-light");
             $("#darkToggler").children().removeClass("fa-sun-o").addClass("fa-moon-o");
@@ -57,10 +57,6 @@ export function hideLoading() {
     })
 }
 
-export function get() {
-    return localStorage.getItem("dark");
-};
-
 export function sortTable() {
     $('th').click(function () {
         var table = $(this).parents('table').eq(0)
@@ -89,10 +85,24 @@ export function pagination() {
     )
 };
 
-export function grid(state) {
+export function gridToggle(state) {
     if (state) {
     }
+    console.log("funfei1")
     $("#gridSwitch").click(function () {
-        $("#dataTable").addClass("d-none")
+        console.log("funfei")
+        if (state) {
+            $("#dataTable").addClass("d-none");
+            $("#gridTable").removeClass("d-none");
+            state = true
+        }
+        else {
+            $("#dataTable").removeClass("d-none");
+            $("#gridTable").addClass("d-none");
+            state = false
+        }
+
     });
+    $("#gridSwitch").click()
+    localStorage.setItem("grid", state);
 };

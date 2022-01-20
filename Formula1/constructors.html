@@ -94,10 +94,10 @@
                 </tr>
             </tbody>
         </table>
-        <div class="container row" data-bind="foreach: records">
+        <div id="gridTable" class="container row" data-bind="foreach: records">
             <div class="card m-2 darken" style="width: 18rem;">
                 <a data-bind="attr: { href:'./constructorDetails.html?id=' + ConstructorId}">
-                    <img src="https://s.cdnmpro.com/636185478/p/l/2/autocolante-i-love-cona~650702.jpg" class="card-img-top" >
+                    <img class="card-img-top" data-bind="attr:{src: ImageUrl != null && ImageUrl.length != 0 ? ImageUrl :  '/Images/generic_car.svg'}" />
                 </a>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item" data-bind="text:Name"></li>

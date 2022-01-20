@@ -16,6 +16,7 @@ var vm = function () {
     self.totalRecords = ko.observable(50);
     self.hasPrevious = ko.observable(false);
     self.hasNext = ko.observable(false);
+    self.ImageHash = ko.observableArray([]);
     self.previousPage = ko.computed(function () {
         return self.currentPage() * 1 - 1;
     }, self);
@@ -44,7 +45,6 @@ var vm = function () {
             list.push(i + step);
         return list;
     };
-    self.ImageArray = [];
     //--- Page Events
     self.activate = function (id) {
         console.log('CALL: getDrivers...');
@@ -59,16 +59,6 @@ var vm = function () {
             self.pagesize(data.PageSize)
             self.totalPages(data.PageCount);
             self.totalRecords(data.Total);
-            console.log(self.records())
-            for (var id = 0; id <= self.records().length; id++) {
-                var composedUri = self.extendedUri() + id;
-                main.ajaxHelper(composedUri, 'GET', self).done(function (data) {
-                    console.log(data);
-                    self.ImageArray.push(data.ImageUrl ? data.ImageUrl : "");
-                });
-                sleep(30)
-            };
-            console.log(self.ImageArray)
             main.hideLoading();
         });
     };
@@ -110,8 +100,10 @@ var vm = function () {
 
 $(document).ready(function () {
     var dark = JSON.parse(localStorage.getItem("dark")) ? JSON.parse(localStorage.getItem("dark")) : false;
+    var grid = JSON.parse(localStorage.getItem("grid")) ? JSON.parse(localStorage.getItem("grid")) : false;
     main.darkToggle(dark);
     main.pagination();
     main.sortTable();
+    main.gridToggle(grid);
     ko.applyBindings(new vm());
 });

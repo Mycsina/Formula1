@@ -34,7 +34,7 @@ var vm = function () {
             self.Number(data.Number);
             self.Races(data.Races);
             self.Url(data.Url);
-            hideLoading();
+            main.hideLoading();
         });
     };
     //--- Internal functions
@@ -53,7 +53,7 @@ var vm = function () {
         }
     };
     //--- start ....
-    showLoading();
+    main.showLoading();
     var pg = getUrlParameter('id');
     console.log(pg);
     if (pg == undefined)

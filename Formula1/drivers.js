@@ -50,7 +50,7 @@ var vm = function () {
         var composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
         main.ajaxHelper(composedUri, 'GET', self).done(function (data) {
             console.log(data);
-            hideLoading();
+            main.hideLoading();
             self.records(data.List);
             self.currentPage(data.CurrentPage);
             self.hasNext(data.HasNext);
@@ -65,20 +65,6 @@ var vm = function () {
     function sleep(milliseconds) {
         const start = Date.now();
         while (Date.now() - start < milliseconds);
-    }
-
-
-
-    function showLoading() {
-        $("#myModal").modal('show', {
-            backdrop: 'static',
-            keyboard: false
-        });
-    }
-    function hideLoading() {
-        $('#myModal').on('shown.bs.modal', function (e) {
-            $("#myModal").modal('hide');
-        })
     }
 
     function getUrlParameter(sParam) {
@@ -98,7 +84,7 @@ var vm = function () {
     };
 
     //--- start ....
-    showLoading();
+    main.showLoading();
     var pg = getUrlParameter('page');
     console.log(pg);
     if (pg == undefined)

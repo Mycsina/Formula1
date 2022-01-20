@@ -6,7 +6,7 @@ var vm = function () {
     //---Variáveis locais
     var self = this;
     self.baseUri = ko.observable('http://192.168.160.58/Formula1/api/constructors');
-    //self.baseUri = ko.observable('http://localhost:62595/api/drivers');
+    self.extendedUri = ko.observable('http://192.168.160.58/Formula1/api/Constructors/Constructor?id=');
     self.displayName = 'Constructors';
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
@@ -44,13 +44,14 @@ var vm = function () {
             list.push(i + step);
         return list;
     };
+    self.ImageArray = [];
     //--- Page Events
     self.activate = function (id) {
         console.log('CALL: getDrivers...');
+        main.showLoading();
         var composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
         main.ajaxHelper(composedUri, 'GET', self).done(function (data) {
             console.log(data);
-            hideLoading();
             self.records(data.List);
             self.currentPage(data.CurrentPage);
             self.hasNext(data.HasNext);
@@ -58,7 +59,17 @@ var vm = function () {
             self.pagesize(data.PageSize)
             self.totalPages(data.PageCount);
             self.totalRecords(data.Total);
-            //self.SetFavourites();
+            console.log(self.records())
+            for (var id = 0; id <= self.records().length; id++) {
+                var composedUri = self.extendedUri() + id;
+                main.ajaxHelper(composedUri, 'GET', self).done(function (data) {
+                    console.log(data);
+                    self.ImageArray.push(data.ImageUrl ? data.ImageUrl : "");
+                });
+                sleep(30)
+            };
+            console.log(self.ImageArray)
+            main.hideLoading();
         });
     };
     //--- Internal functions
@@ -67,19 +78,6 @@ var vm = function () {
         while (Date.now() - start < milliseconds);
     }
 
-
-
-    function showLoading() {
-        $("#myModal").modal('show', {
-            backdrop: 'static',
-            keyboard: false
-        });
-    }
-    function hideLoading() {
-        $('#myModal').on('shown.bs.modal', function (e) {
-            $("#myModal").modal('hide');
-        })
-    }
 
     function getUrlParameter(sParam) {
         var sPageURL = window.location.search.substring(1),
@@ -98,7 +96,7 @@ var vm = function () {
     };
 
     //--- start ....
-    showLoading();
+    main.showLoading();
     var pg = getUrlParameter('page');
     console.log(pg);
     if (pg == undefined)

@@ -36,21 +36,10 @@ var vm = function () {
             self.Drivers(data.Drivers);
             self.Races(data.Races);
             self.Url(data.Url);
-            hideLoading();
+            main.hideLoading();
         });
     };
     //--- Internal functions
-    function showLoading() {
-        $('#myModal').modal('show', {
-            backdrop: 'static',
-            keyboard: false
-        });
-    }
-    function hideLoading() {
-        $('#myModal').on('shown.bs.modal', function (e) {
-            $("#myModal").modal('hide');
-        })
-    }
 
     function getUrlParameter(sParam) {
         var sPageURL = window.location.search.substring(1),
@@ -67,7 +56,7 @@ var vm = function () {
         }
     };
     //--- start ....
-    showLoading();
+    main.showLoading();
     var pg = getUrlParameter('id');
     console.log(pg);
     if (pg == undefined)

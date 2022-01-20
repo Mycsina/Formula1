@@ -28,20 +28,34 @@
     })
 };
 
-export function ajaxHelper(uri, method, self) {
+export function ajaxHelper(uri, method, self, data) {
     self.error(''); // Clear error message
     return $.ajax({
         type: method,
         url: uri,
         dataType: 'json',
         contentType: 'application/json',
-        data: null,
+        data: data ? JSON.stringify(data) : null,
         error: function (jqXHR, textStatus, errorThrown) {
             console.log("AJAX Call[" + uri + "] Fail...");
             self.error(errorThrown);
         }
     });
+
 };
+
+export function showLoading() {
+    $('#myModal').modal('show', {
+        backdrop: 'static',
+        keyboard: false
+    });
+};
+
+export function hideLoading() {
+    $('#myModal').on('shown.bs.modal', function (e) {
+        $("#myModal").modal('hide');
+    })
+}
 
 export function get() {
     return localStorage.getItem("dark");
@@ -75,4 +89,10 @@ export function pagination() {
     )
 };
 
-export function pagesize
+export function grid(state) {
+    if (state) {
+    }
+    $("#gridSwitch").click(function () {
+        $("#dataTable").addClass("d-none")
+    });
+};

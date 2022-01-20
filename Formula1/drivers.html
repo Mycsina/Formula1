@@ -42,7 +42,7 @@
                 <br />
                 <span data-bind="html: 'Drivers: '+ fromRecord() + '-' + toRecord() + ' of ' + totalRecords()"></span>
             </p>
-            <div class="col-9 my-0 pt-0">
+            <div class="col-9 my-3 pt-0">
                 <ul class="pagination float-start">
                     <!-- ko if: currentPage() > 5 && totalPages() > 10 -->
                     <li class="page-item float-end"><a class="page-link" title="First Page" data-bind="attr: { href: './drivers.html?page=' + '1',  rel:'prev'}">⇤</a></li>
@@ -77,10 +77,9 @@
             <tbody class="" data-bind="foreach: records">
                 <tr>
                     <td class="align-middle" data-bind="text:DriverId"></td>
-                    <td class="align-middle" data-bind="text:Name"></td>
+                    <td class="align-middle"><a style="" data-bind="text:Name, attr: { href:'./driverDetails.html?id=' + DriverId}"></a></td>
                     <td class="align-middle" data-bind="text:Nationality"></td>
                     <td class="text-end">
-                        <a class="btn btn-default btn-light btn-sm" data-bind="attr: { href:'./driverDetails.html?id=' + DriverId }"><i class="fa fa-eye" title="Selecione para ver detalhes"></i></a>
                         <button class="btn btn-default btn-sm"><i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + DriverId }" title="Selecione para adicionar aos favoritos"></i></button>
                     </td>
                 </tr>

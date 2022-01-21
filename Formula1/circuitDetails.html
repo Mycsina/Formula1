@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>ITW 2021/22 - Driver Details</title>
+    <title>ITW 2021/22 - Circuit Details</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
@@ -38,46 +38,26 @@
         </div>
         <!-- ko if:Name().length > 0 -->
         <div class="row m-0">
-        <div class="col-7">
-        <table class="table table-sm small">
-            <tr class="row">
-                <th class="col-md-2">Name</th>
-                <td class="col-md-10" data-bind="text: Name"></td>
-            </tr>
-            <tr class="row">
-                <th class="col-md-2">Nickname</th>
-                <td class="col-md-10" data-bind="text: DriverRef"></td>
-            </tr>
-            <tr class="row">
-                <th class="col-md-2">Nationality</th>
-                <td class="col-md-10" data-bind="text: Nationality"></td>
-            </tr>
-            <tr class="row" data-bind="visible: Number() != '' && Number() != null">
-                <th class="col-md-2">Number</th>
-                <td class="col-md-10" data-bind="text: Number"></td>
-            </tr>
-            <tr class="row">
-                <th class="col-md-2">Url</th>
-                <td class="col-md-10"><a class="text-muted text-decoration-none" data-bind="attr: {href: Url, target:'blank'}"><i class="fa fa-external-link"></i>[<span class="" data-bind="text: Url"></span>]</a></td>
-            </tr>
-        </table>
-        </div>
-        <div class="col-1"></div>
-        <div class="col-2">
-            <img class="img-fluid" data-bind="attr:{src: ImageUrl() != null && ImageUrl().length != 0 ? ImageUrl() :  '/Images/portrait.png'}" style=""/>
-        </div>
-        </div>
-        <div class="container ps-0">
-            <table>
-                <tr class="row">
-                <th colspan="2">Races [<span data-bind="text: Races().length"></span>]</th>
-            </tr>
-            <tr>
-                <td colspan="2" class="small" data-bind="foreach: Races">
-                    <div class="border rounded d-inline-block mr-2 mb-1 p-1"><i class=" fa fa-flag-checkered"></i><a class="text-muted text-decoration-none" data-bind="text: ' ' + Name + ' ('+Year+') ', attr: { href: './raceDetails?id=' + RaceId }"></a></div>
-                </td>
-            </tr>
-            </table>
+            <div class="col-7">
+                <table class="table table-sm small">
+                    <tr class="row">
+                        <th class="col-md-2">Name</th>
+                        <td class="col-md-10" data-bind="text: Name"></td>
+                    </tr>
+                    <tr class="row">
+                        <th class="col-md-2">Country</th>
+                        <td class="col-md-10" data-bind="text: Country"></td>
+                    </tr>
+                    <tr class="row" data-bind="visible: Number() != '' && Number() != null">
+                        <th class="col-md-2">Number</th>
+                        <td class="col-md-10" data-bind="text: Number"></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-2">
+                <img class="img-fluid" data-bind="attr:{src: ImageUrl() != null && ImageUrl().length != 0 ? ImageUrl() :  '/Images/portrait.png'}" style="" />
+            </div>
         </div>
         <!-- /ko -->
     </div>
@@ -112,6 +92,6 @@
     <script src="../Scripts/bootstrap.bundle.min.js"></script>
     <script src="../Scripts/knockout-3.5.1.js"></script>
     <script src="../Scripts/jquery-3.6.0.min.js"></script>
-    <script type="module" src="JS/driverDetails.js"></script>
+    <script type="module" src="JS/circuitDetails.js"></script>
 </body>
 </html>

@@ -86,23 +86,29 @@ export function pagination() {
 };
 
 export function gridToggle(state) {
+    console.log(state)
     if (state) {
+        $("#dataTable").addClass("d-none");
+        $("#gridTable").removeClass("d-none");
+        state = true;
     }
-    console.log("funfei1")
+    else {
+        $("#dataTable").removeClass("d-none");
+        $("#gridTable").addClass("d-none");
+        state = false;
+    }
     $("#gridSwitch").click(function () {
-        console.log("funfei")
         if (state) {
-            $("#dataTable").addClass("d-none");
-            $("#gridTable").removeClass("d-none");
-            state = true
-        }
-        else {
             $("#dataTable").removeClass("d-none");
             $("#gridTable").addClass("d-none");
-            state = false
+            state = false;
         }
-
+        else {
+            $("#dataTable").addClass("d-none");
+            $("#gridTable").removeClass("d-none");
+            state = true;
+        }
+        localStorage.setItem("grid", state);
     });
-    $("#gridSwitch").click()
-    localStorage.setItem("grid", state);
+
 };

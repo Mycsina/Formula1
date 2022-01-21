@@ -5,9 +5,8 @@ var vm = function () {
     console.log('ViewModel initiated...');
     //---Variáveis locais
     var self = this;
-    self.baseUri = ko.observable('http://192.168.160.58/Formula1/api/drivers');
-    //self.baseUri = ko.observable('http://localhost:62595/api/drivers');
-    self.displayName = 'Drivers List';
+    self.baseUri = ko.observable('http://192.168.160.58/Formula1/api/circuits');
+    self.displayName = 'Circuits List';
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
     self.records = ko.observableArray([]);
@@ -46,7 +45,7 @@ var vm = function () {
     };
     //--- Page Events
     self.activate = function (id) {
-        console.log('CALL: getDrivers...');
+        console.log('CALL: getCircuits...');
         var composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
         main.ajaxHelper(composedUri, 'GET', self).done(function (data) {
             console.log(data);
@@ -98,8 +97,10 @@ var vm = function () {
 
 $(document).ready(function () {
     var dark = JSON.parse(localStorage.getItem("dark")) ? JSON.parse(localStorage.getItem("dark")) : false;
+    var grid = JSON.parse(localStorage.getItem("grid")) ? JSON.parse(localStorage.getItem("grid")) : false;
     main.darkToggle(dark);
     main.pagination();
     main.sortTable();
+    main.gridToggle(grid);
     ko.applyBindings(new vm());
 });

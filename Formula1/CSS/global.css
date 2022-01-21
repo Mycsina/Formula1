@@ -4,7 +4,11 @@
 }
 
 #darkToggler {
-    cursor: pointer
+    cursor: pointer;
+}
+
+#gridSwitch {
+    cursor: pointer;
 }
 
 .text-white {
@@ -38,7 +42,7 @@
     color: firebrick;
 }
 
-tbody > tr > td > a {
+tbody > tr > td > a, tbody > tr > td > a:hover {
     color: inherit;
     text-decoration: inherit;
 }
@@ -47,9 +51,6 @@ thead > tr > th {
     cursor: pointer;
 }
 
-div > div > i {
-    cursor: pointer;
-}
 
 /* button default
 ---------------------------- */

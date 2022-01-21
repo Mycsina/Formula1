@@ -16,7 +16,7 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <MyType>Custom</MyType>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress />
+    <Use64BitIISExpress>true</Use64BitIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -33,6 +33,8 @@
     <OutputPath>bin\</OutputPath>
     <DocumentationFile>Formula1.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <FilesToIncludeForPublish>AllFilesInProjectFolder</FilesToIncludeForPublish>
+    <LegacyPublishPropertiesPageEnabled>true</LegacyPublishPropertiesPageEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -89,9 +91,13 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Formula1\circuitDetails.html" />
+    <Content Include="Formula1\circuits.html" />
     <Content Include="Formula1\constructorDetails.html" />
-    <Content Include="Formula1\constructorDetails.js" />
-    <Content Include="Formula1\constructors.js" />
+    <Content Include="Formula1\JS\circuitDetails.js" />
+    <Content Include="Formula1\JS\circuits.js" />
+    <Content Include="Formula1\JS\constructorDetails.js" />
+    <Content Include="Formula1\JS\constructors.js" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -110,16 +116,15 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Formula1\constructors.html" />
     <Content Include="Formula1\driverDetails.html" />
-    <Content Include="Formula1\driverDetails.js" />
-    <Content Include="Formula1\drivers.css" />
+    <Content Include="Formula1\JS\driverDetails.js" />
     <Content Include="Formula1\drivers.html" />
-    <Content Include="Formula1\drivers.js" />
+    <Content Include="Formula1\JS\drivers.js" />
     <Content Include="Images\generic_car.svg" />
-    <Content Include="Formula1\index.css" />
+    <Content Include="Formula1\CSS\index.css" />
     <Content Include="Formula1\index.html" />
-    <Content Include="Formula1\index.js" />
-    <Content Include="Formula1\global.css" />
-    <Content Include="Formula1\global.js" />
+    <Content Include="Formula1\JS\index.js" />
+    <Content Include="Formula1\CSS\global.css" />
+    <Content Include="Formula1\JS\global.js" />
     <Content Include="Images\portrait.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -232,9 +237,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>65374</DevelopmentServerPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:65374/</IISUrl>
+          <IISUrl>http://localhost:64970/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

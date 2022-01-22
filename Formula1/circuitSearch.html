@@ -4,9 +4,9 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>ITW 2021/22 - Driver Details</title>
+    <title>ITW 2021/22 - Circuits List</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -15,8 +15,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top mb-0">
         <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <img src="https://logodownload.org/wp-content/uploads/2016/11/formula-1-logo-7.png" width="60"></a>
+            <a class="navbar-brand" href="index.html"><img src="https://logodownload.org/wp-content/uploads/2016/11/formula-1-logo-7.png" width="60"></a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="drivers.html">Drivers</a></li>
@@ -28,63 +27,65 @@
                 <button class="navbar-toggler shadow" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <span id="darkToggler" class="navbar-text ms-3 h5"><i class="fa fa-moon-o" style="width: 20px auto"></i></span>
+                <span id="darkToggler" class="navbar-text ms-3 h5"><i class="fa fa-moon-o" style="width:20px auto"></i></span>
+                <span id="gridSwitch" class="navbar-text ms-3 h5"><i class="fa fa-th" style="width:20px auto"></i></span>
             </nav>
         </div>
     </nav>
-    <!-- Work Area-->
+    <!-- Working Area -->
     <div class="container">
-        <div class="py-2 mb-3 darken">
-            <h2 data-bind="text:Name()"></h2>
+        <div class="border-bottom pt-4 pb-2 mb-3 darken">
+            <h2 data-bind="text:displayName"></h2>
         </div>
-        <!-- ko if:Name().length > 0 -->
-        <div class="row m-0">
-            <div class="col-7">
-                <table class="table table-sm small">
-                    <tr class="row">
-                        <th class="col-md-2">Name</th>
-                        <td class="col-md-10" data-bind="text: Name"></td>
-                    </tr>
-                    <tr class="row">
-                        <th class="col-md-2">Nickname</th>
-                        <td class="col-md-10" data-bind="text: DriverRef"></td>
-                    </tr>
-                    <tr class="row">
-                        <th class="col-md-2">Nationality</th>
-                        <td class="col-md-10" data-bind="text: Nationality"></td>
-                    </tr>
-                    <tr class="row" data-bind="visible: Number() != '' && Number() != null">
-                        <th class="col-md-2">Number</th>
-                        <td class="col-md-10" data-bind="text: Number"></td>
-                    </tr>
-                    <tr class="row">
-                        <th class="col-md-2">Url</th>
-                        <td class="col-md-10"><a class="text-muted text-decoration-none" data-bind="attr: {href: Url, target:'blank'}"><i class="fa fa-external-link"></i>[<span class="" data-bind="text: Url"></span>]</a></td>
-                    </tr>
-                </table>
+        <div class="row small">
+            <p class=" col-4 mr-auto pt-2 darken">
+            </p>
+            <div class="col-9 my-3 pt-0">
             </div>
-            <div class="col-1"></div>
-            <div class="col-2">
-                <img class="img-fluid" data-bind="attr:{src: ImageUrl() != null && ImageUrl().length != 0 ? ImageUrl() :  '/Images/portrait.png'}" style="" />
-            </div>
-        </div>
-        <div class="container ps-0">
-           <div class="accordion darken my-3" id="raceAccordion">
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button darken darken-body" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            Races [<span data-bind="text: Races().length"></span>]
-                        </button>
-                    </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse darken-body" aria-labelledby="headingOne" data-bs-parent="#raceAccordion">
-                        <div class="accordion-body" data-bind="foreach: Races">
-                            <div class="border rounded d-inline-block mr-2 mb-1 p-1"><i class=" fa fa-flag-checkered"></i><a class="text-muted text-decoration-none" data-bind="text: ' ' + Name + ' ('+Year+') ', attr: { href: './raceDetails?id=' + RaceId }"></a></div>
-                        </div>
-                    </div>
+            <div class="col-3 justify-content-end">
+                <div class="input-group rounded darken-body darken">
+                  <form action="circuitSearch.html">
+                    <input type="search" class="form-control rounded darken darken-body border-end-0" name="year" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                  </form>
+                        <span class="input-group-text darken-body darken border-start-0" id="search-addon" style="transform:translateX(-3px)">
+                    <i class="fa fa-search"></i>
+                  </span>
                 </div>
             </div>
         </div>
-    <!-- /ko -->
+        <table id="dataTable" class="table table-striped table-sm small d-none">
+            <thead class="bg-dark text-light">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Country</th>
+                    <th scope="col" class="text-right"></th>
+                </tr>
+            </thead>
+            <tbody class="" data-bind="foreach: records">
+                <tr>
+                    <td class="align-middle" data-bind="text:CircuitId"></td>
+                    <td class="align-middle"><a style="" data-bind="text:Name, attr: { href:'./circuitDetails.html?id=' + CircuitId}"></a></td>
+                    <td class="align-middle" data-bind="text:Country"></td>
+                    <td class="text-end">
+                        <button class="btn btn-default btn-sm"><i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + CircuitId }" title="Selecione para adicionar aos favoritos"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="gridTable" class="container row justify-content-center" data-bind="foreach: records">
+               <div class="card m-3 darken border-5 justify-content-center" style="width: 18rem;">
+               <a data-bind="attr: { href:'./circuitDetails.html?id=' + CircuitId}">
+                    <img class="card-img-top" data-bind="attr:{src: ImageUrl != null && ImageUrl.length != 0 ? ImageUrl :  '/Images/portrait.png'}" />
+               </a>
+               <ul class="list-group list-group-flush">
+                    <li class="list-group-item" data-bind="text:Name"></li>
+                    <li class="list-group-item" data-bind="text:Country"></li>
+                    <li class="list-group-item" data-bind="text:'Id: ' + CircuitId"></li>
+               </ul>
+            </div>
+        </div>
+    </div>
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -103,7 +104,7 @@
             </div>
         </div>
     </div>
-    <!-- End of Work Area -->
+    <!-- End of Working Area -->
     <nav class="navbar navbar-light bg-light">
         <div class="container small">
             <div class="navbar-text">&copy;  Introdução as Tecnologias Web - 2021/22</div>
@@ -116,6 +117,6 @@
     <script src="../Scripts/bootstrap.bundle.min.js"></script>
     <script src="../Scripts/knockout-3.5.1.js"></script>
     <script src="../Scripts/jquery-3.6.0.min.js"></script>
-    <script type="module" src="JS/driverDetails.js"></script>
+    <script type="module" src="JS/circuitSearch.js"></script>
 </body>
 </html>

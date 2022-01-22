@@ -16,7 +16,8 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <MyType>Custom</MyType>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress>true</Use64BitIISExpress>
+    <Use64BitIISExpress>
+    </Use64BitIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -93,9 +94,13 @@
   <ItemGroup>
     <Content Include="Formula1\circuitDetails.html" />
     <Content Include="Formula1\circuits.html" />
+    <Content Include="Formula1\circuitSearch.html" />
     <Content Include="Formula1\constructorDetails.html" />
+    <Content Include="Formula1\CSS\circuitDetails.css" />
+    <Content Include="Formula1\HtmlPage1.html" />
     <Content Include="Formula1\JS\circuitDetails.js" />
     <Content Include="Formula1\JS\circuits.js" />
+    <Content Include="Formula1\JS\circuitSearch.js" />
     <Content Include="Formula1\JS\constructorDetails.js" />
     <Content Include="Formula1\JS\constructors.js" />
     <Content Include="Content\bootstrap-grid.css" />

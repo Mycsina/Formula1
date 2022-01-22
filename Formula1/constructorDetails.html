@@ -68,28 +68,33 @@
         </div>
         </div>
         <div class="container ps-0 row row-cols-2">
-            <div class="">
-                <table>
-                    <tr class="row">
-                        <th colspan="2">Races [<span data-bind="text: Races().length"></span>]</th>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="small" data-bind="foreach: Races">
+            <div class="accordion darken my-3" id="raceAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button darken darken-body" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Races [<span data-bind="text: Races().length"></span>]
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse darken-body" aria-labelledby="headingOne" data-bs-parent="#raceAccordion">
+                        <div class="accordion-body" data-bind="foreach: Races">
                             <div class="border rounded d-inline-block mr-2 mb-1 p-1"><i class=" fa fa-flag-checkered"></i><a class="text-muted text-decoration-none" data-bind="text: ' ' + Name + ' ('+Year+') ', attr: { href: './raceDetails.html?id=' + RaceId }"></a></div>
-                        </td>
-                </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="">
-                <table>
-                    <tr class="row">
-                        <th colspan="2">Drivers [<span data-bind="text: Drivers().length"></span>]</th>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="small" data-bind="foreach: Drivers">
-                            <div class="border rounded d-inline-block mr-2 mb-1 p-1"><i class="fa fa-id-card"></i><a class="text-muted text-decoration-none" data-bind="text: ' ' + Name, attr: { href: './driverDetails.html?id=' + DriverId}"></a></div>
-                        </td>
-                    </tr>
-                </table>
+            <div class="accordion darken my-3" id="driverAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button darken darken-body" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                            Drivers [<span data-bind="text: Drivers().length"></span>]
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse darken-body" aria-labelledby="headingTwo" data-bs-parent="#driverAccordion">
+                        <div class="accordion-body" data-bind="foreach: Drivers">
+                            <div class="border rounded d-inline-block mr-2 mb-1 p-1"><i class=" fa fa-flag-checkered"></i><a class="text-muted text-decoration-none" data-bind="text: ' ' + Name, attr: { href: './driverDetails.html?id=' + DriverId }"></a></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- /ko -->

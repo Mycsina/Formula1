@@ -5,58 +5,19 @@ var vm = function () {
     console.log('ViewModel initiated...');
     //---Variáveis locais
     var self = this;
-    self.baseUri = ko.observable('http://192.168.160.58/Formula1/api/circuits');
-    self.displayName = 'Circuits List';
+    self.baseUri = ko.observable('http://192.168.160.58/Formula1/api/circuits/calendar');
+    self.displayName = 'Circuits Search';
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
     self.records = ko.observableArray([]);
-    self.currentPage = ko.observable(1);
-    self.pagesize = ko.observable(20);
-    self.totalRecords = ko.observable(50);
-    self.hasPrevious = ko.observable(false);
-    self.hasNext = ko.observable(false);
-    self.previousPage = ko.computed(function () {
-        return self.currentPage() * 1 - 1;
-    }, self);
-    self.nextPage = ko.computed(function () {
-        return self.currentPage() * 1 + 1;
-    }, self);
-    self.fromRecord = ko.computed(function () {
-        return self.previousPage() * self.pagesize() + 1;
-    }, self);
-    self.toRecord = ko.computed(function () {
-        return Math.min(self.currentPage() * self.pagesize(), self.totalRecords());
-    }, self);
-    self.totalPages = ko.observable(0);
-    self.pageArray = function () {
-        var list = [];
-        var size = Math.min(self.totalPages(), 9);
-        var step;
-        if (size < 9 || self.currentPage() === 1)
-            step = 0;
-        else if (self.currentPage() >= self.totalPages() - 4)
-            step = self.totalPages() - 9;
-        else
-            step = Math.max(self.currentPage() - 5, 0);
-
-        for (var i = 1; i <= size; i++)
-            list.push(i + step);
-        return list;
-    };
     //--- Page Events
     self.activate = function (id) {
         console.log('CALL: getCircuits...');
-        var composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
+        var composedUri = self.baseUri() + "?year=" + id;
         main.ajaxHelper(composedUri, 'GET', self).done(function (data) {
             console.log(data);
             main.hideLoading();
-            self.records(data.List);
-            self.currentPage(data.CurrentPage);
-            self.hasNext(data.HasNext);
-            self.hasPrevious(data.HasPrevious);
-            self.pagesize(data.PageSize)
-            self.totalPages(data.PageCount);
-            self.totalRecords(data.Total);
+            self.records(data);
             //self.SetFavourites();
         });
     };
@@ -84,14 +45,16 @@ var vm = function () {
 
     //--- start ....
     main.showLoading();
-    var pg = getUrlParameter('page');
+    var pg = getUrlParameter('year');
     console.log(pg);
     if (pg == undefined)
-        self.activate(1);
+        self.activate(2021);
     else {
         self.activate(pg);
     }
 };
+
+
 
 $(document).ready(function () {
     var dark = JSON.parse(localStorage.getItem("dark")) ? JSON.parse(localStorage.getItem("dark")) : false;

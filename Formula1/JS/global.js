@@ -6,6 +6,7 @@
         $("body").addClass("bg-dark");
         $(".navbar-light").removeClass("navbar-light bg-light").addClass("navbar-dark bg-dark");
         $("#darkToggler").children().removeClass("fa-moon-o").addClass("fa-sun-o");
+        $(".darken-body").addClass("bg-dark");
         $(".darken").addClass("text-white");
     }
     $("#darkToggler").click(function () {
@@ -14,6 +15,7 @@
             $("body").removeClass("bg-dark");
             $(".navbar-dark").removeClass("navbar-dark bg-dark").addClass("navbar-light bg-light");
             $("#darkToggler").children().removeClass("fa-sun-o").addClass("fa-moon-o");
+            $(".darken-body").removeClass("bg-dark");
             $(".darken").removeClass("text-white");
             state = false;
         }
@@ -21,6 +23,7 @@
             $("body").addClass("bg-dark")
             $(".navbar-light").removeClass("navbar-light bg-light").addClass("navbar-dark bg-dark");
             $("#darkToggler").children().removeClass("fa-moon-o").addClass("fa-sun-o");
+            $(".darken-body").addClass("bg-dark");
             $(".darken").addClass("text-white");
             state = true;
         };

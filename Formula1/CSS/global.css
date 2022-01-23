@@ -3,11 +3,12 @@
     margin: 56px 0 0 0;
 }
 
-#darkToggler {
-    cursor: pointer;
+a, a:hover, a:visited {
+    color: inherit;
+    text-decoration: inherit;
 }
 
-#gridSwitch {
+nav > span > i {
     cursor: pointer;
 }
 
@@ -40,11 +41,6 @@
 
 .page-link {
     color: firebrick;
-}
-
-tbody > tr > td > a, tbody > tr > td > a:hover {
-    color: inherit;
-    text-decoration: inherit;
 }
 
 thead > tr > th {

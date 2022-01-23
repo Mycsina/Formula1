@@ -93,12 +93,18 @@ var vm = function () {
     }
 };
 
+function Location() {
+    console.log("k")
+    $("#globe").click(function () {
+        window.location.href = "circuitLocation.html";
+    });
+};
+
 $(document).ready(function () {
-    var dark = JSON.parse(localStorage.getItem("dark")) ? JSON.parse(localStorage.getItem("dark")) : false;
-    var grid = JSON.parse(localStorage.getItem("grid")) ? JSON.parse(localStorage.getItem("grid")) : false;
-    main.darkToggle(dark);
+    main.darkToggle();
     main.pagination();
     main.sortTable();
-    main.gridToggle(grid);
+    main.gridToggle();
+    Location();
     ko.applyBindings(new vm());
 });

@@ -29,6 +29,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <span id="darkToggler" class="navbar-text ms-3 h5"><i class="fa fa-moon-o" style="width: 20px auto"></i></span>
+                <span id="statsToggler" class="navbar-text ms-3 h5"><i class="fa fa-bar-chart" style="width: 20px auto"></i></span>
             </nav>
         </div>
     </nav>
@@ -70,7 +71,7 @@
         </div>
         <div class="container ps-0">
            <div class="accordion darken my-3" id="raceAccordion">
-                <div class="accordion-item">
+                <div class="accordion-item border-secondary">
                     <h2 class="accordion-header" id="headingOne">
                         <button class="accordion-button darken darken-body" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                             Races [<span data-bind="text: Races().length"></span>]
@@ -78,13 +79,14 @@
                     </h2>
                     <div id="collapseOne" class="accordion-collapse collapse darken-body" aria-labelledby="headingOne" data-bs-parent="#raceAccordion">
                         <div class="accordion-body" data-bind="foreach: Races">
-                            <div class="border rounded d-inline-block mr-2 mb-1 p-1"><i class=" fa fa-flag-checkered"></i><a class="text-muted text-decoration-none" data-bind="text: ' ' + Name + ' ('+Year+') ', attr: { href: './raceDetails?id=' + RaceId }"></a></div>
+                            <div class="border border-secondary rounded d-inline-block mr-2 mb-1 p-1"><i class=" fa fa-flag-checkered"></i><a class="text-muted text-decoration-none" data-bind="text: ' ' + Name + ' ('+Year+') ', attr: { href: './raceDetails.html?id=' + RaceId }"></a></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     <!-- /ko -->
+    </div>
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -103,6 +105,18 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="statsModal" tabindex="-1" role="dialog" aria-labelledby="statsModelLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body justify-content-center darken darken-body">
+                    <div class="container-fluid">
+                        <canvas id="lineGraph"></canvas>
+                        <canvas id="pieGraph"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- End of Work Area -->
     <nav class="navbar navbar-light bg-light">
         <div class="container small">
@@ -116,6 +130,7 @@
     <script src="../Scripts/bootstrap.bundle.min.js"></script>
     <script src="../Scripts/knockout-3.5.1.js"></script>
     <script src="../Scripts/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script type="module" src="JS/driverDetails.js"></script>
 </body>
 </html>

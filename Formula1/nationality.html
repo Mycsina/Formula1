@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>ITW 2021/22 - Constructors</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -48,25 +48,25 @@
                 <button class="btn btn-danger btn-sm rounded-end fs-6" data-bind="click: pagesize(1000)">Todos</button>
                 <br />
                 <br />
-                <span data-bind="html: 'Drivers: '+ fromRecord() + '-' + toRecord() + ' of ' + totalRecords()"></span>
+                <span data-bind="html: 'Nationalities: '+ fromRecord() + '-' + toRecord() + ' of ' + totalRecords()"></span>
             </div>
             <div class="col-9 my-3 pt-0">
                 <ul class="pagination float-start">
                     <!-- ko if: currentPage() > 5 && totalPages() > 10 -->
-                    <li class="page-item float-end"><a class="page-link" title="First Page" data-bind="attr: { href: './constructors.html?page=' + '1',  rel:'prev'}">⇤</a></li>
-                    <li class="page-item float-end"><a class="page-link" title="Previous Page" data-bind="attr: { href: './constructors.html?page=' + previousPage(),  rel:'prev'}">←</a></li>
+                    <li class="page-item float-end"><a class="page-link" title="First Page" data-bind="attr: { href: './nationality.html?page=' + '1',  rel:'prev'}">⇤</a></li>
+                    <li class="page-item float-end"><a class="page-link" title="Previous Page" data-bind="attr: { href: './nationality.html?page=' + previousPage(),  rel:'prev'}">←</a></li>
                     <!-- /ko -->
                     <!-- ko foreach: pageArray()-->
                     <!-- ko if:$data == $parent.currentPage() -->
                     <li class="active page-item"><a class="page-link" data-bind="attr: { title:'Current Page ' + $data }, text: $data"></a></li>
                     <!-- /ko -->
                     <!-- ko if:$data != $parent.currentPage() -->
-                    <li class="page-item"><a class="page-link" data-bind="attr: { href: './constructors.html?page=' + $data, title:'Goto Page ' + $data }, text:$data"></a></li>
+                    <li class="page-item"><a class="page-link" data-bind="attr: { href: './nationality.html?page=' + $data, title:'Goto Page ' + $data }, text:$data"></a></li>
                     <!-- /ko -->
                     <!-- /ko -->
                     <!-- ko if: currentPage() < totalPages() - 4 && totalPages() > 9 -->
-                    <li class="page-item"><a class="page-link" title="Next Page" data-bind="attr: { href: './constructors.html?page=' + nextPage(), rel:'next' }">→</a></li>
-                    <li class="page-item"><a class="page-link" title="Last Page" data-bind="attr: { href: './constructors.html?page=' + totalPages() }">⇥</a></li>
+                    <li class="page-item"><a class="page-link" title="Next Page" data-bind="attr: { href: './nationality.html?page=' + nextPage(), rel:'next' }">→</a></li>
+                    <li class="page-item"><a class="page-link" title="Last Page" data-bind="attr: { href: './nationality.html?page=' + totalPages() }">⇥</a></li>
                     <!-- /ko -->
                 </ul>
             </div>
@@ -78,30 +78,27 @@
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Nationality</th>
                     <th scope="col" class="text-right"></th>
                 </tr>
             </thead>
             <tbody class="" data-bind="foreach: records">
                 <tr>
-                    <td class="align-middle" data-bind="text:ConstructorId"></td>
-                    <td class="align-middle"><a data-bind="text:Name, attr: { href:'./constructorDetails.html?id=' + ConstructorId}"></a></td>
-                    <td class="align-middle" data-bind="text:Nationality"></td>
+                    <td class="align-middle" data-bind="text:NationalityId"></td>
+                    <td class="align-middle"><a data-bind="text:Name, attr: { href:'./nationalityDetails.html?id=' + NationalityId}"></a></td>
                     <td class="text-end">
-                        <button class="btn btn-default btn-sm darken darken-body border-secondar"><i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + ConstructorId }" title="Selecione para adicionar aos favoritos"></i></button>
+                        <button class="btn btn-default btn-sm darken darken-body border-secondar"><i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + NationalityId }" title="Selecione para adicionar aos favoritos"></i></button>
                     </td>
                 </tr>
             </tbody>
         </table>
         <div id="gridTable" class="container row justify-content-center" data-bind="foreach: records">
             <div class="card m-3 darken border-5 justify-content-center" style="width: 18rem;">
-                <a data-bind="attr: { href:'./constructorDetails.html?id=' + ConstructorId}">
-                    <img class="card-img-top" data-bind="attr:{src: ImageUrl != null && ImageUrl.length != 0 ? ImageUrl :  '/Images/generic_car.svg'}" />
+                <a data-bind="attr: { href:'./nationalityDetails.html?id=' + NationalityId}">
+                    <img class="card-img-top" src="/Images/generic_flag.png" />
                 </a>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item" data-bind="text:Name"></li>
-                    <li class="list-group-item" data-bind="text:Nationality"></li>
-                    <li class="list-group-item" data-bind="text:'Id: ' + ConstructorId"></li>
+                    <li class="list-group-item" data-bind="text:'Id: ' + NationalityId"></li>
                 </ul>
             </div>
         </div>
@@ -136,6 +133,6 @@
     <script src="../Scripts/bootstrap.bundle.min.js"></script>
     <script src="../Scripts/knockout-3.5.1.js"></script>
     <script src="../Scripts/jquery-3.6.0.min.js"></script>
-    <script type="module" src="JS/constructors.js"></script>
+    <script type="module" src="JS/nationality.js"></script>
 </body>
 </html>

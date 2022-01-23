@@ -96,11 +96,9 @@ var vm = function () {
 
 
 $(document).ready(function () {
-    var dark = JSON.parse(localStorage.getItem("dark")) ? JSON.parse(localStorage.getItem("dark")) : false;
-    var grid = JSON.parse(localStorage.getItem("grid")) ? JSON.parse(localStorage.getItem("grid")) : false;
-    main.darkToggle(dark);
+    main.darkToggle();
     main.pagination();
     main.sortTable();
-    main.gridToggle(grid);
+    main.gridToggle();
     ko.applyBindings(new vm());
 });

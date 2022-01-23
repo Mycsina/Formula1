@@ -67,7 +67,6 @@ var vm = function () {
 };
 
 $(document).ready(function () {
-    var dark = JSON.parse(localStorage.getItem("dark")) ? JSON.parse(localStorage.getItem("dark")) : false;
-    main.darkToggle(dark);
+    main.darkToggle();
     ko.applyBindings(new vm());
 });

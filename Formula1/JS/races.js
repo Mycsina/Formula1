@@ -5,18 +5,16 @@ var vm = function () {
     console.log('ViewModel initiated...');
     //---Variáveis locais
     var self = this;
-    self.baseUri = ko.observable('http://192.168.160.58/Formula1/api/constructors');
-    self.extendedUri = ko.observable('http://192.168.160.58/Formula1/api/Constructors/Constructor?id=');
-    self.displayName = 'Constructors';
+    self.baseUri = ko.observable('http://192.168.160.58/Formula1/api/races');
+    self.displayName = 'Races List';
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
     self.records = ko.observableArray([]);
     self.currentPage = ko.observable(1);
-    self.pagesize = ko.observable(25);
+    self.pagesize = ko.observable(20);
     self.totalRecords = ko.observable(50);
     self.hasPrevious = ko.observable(false);
     self.hasNext = ko.observable(false);
-    self.ImageHash = ko.observableArray([]);
     self.previousPage = ko.computed(function () {
         return self.currentPage() * 1 - 1;
     }, self);
@@ -48,10 +46,10 @@ var vm = function () {
     //--- Page Events
     self.activate = function (id) {
         console.log('CALL: getDrivers...');
-        main.showLoading();
         var composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
         main.ajaxHelper(composedUri, 'GET', self).done(function (data) {
             console.log(data);
+            main.hideLoading();
             self.records(data.List);
             self.currentPage(data.CurrentPage);
             self.hasNext(data.HasNext);
@@ -59,7 +57,7 @@ var vm = function () {
             self.pagesize(data.PageSize)
             self.totalPages(data.PageCount);
             self.totalRecords(data.Total);
-            main.hideLoading();
+            //self.SetFavourites();
         });
     };
     //--- Internal functions
@@ -67,7 +65,6 @@ var vm = function () {
         const start = Date.now();
         while (Date.now() - start < milliseconds);
     }
-
 
     function getUrlParameter(sParam) {
         var sPageURL = window.location.search.substring(1),

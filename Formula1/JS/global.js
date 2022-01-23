@@ -1,4 +1,5 @@
-﻿export function darkToggle(state) {
+﻿export function darkToggle() {
+    var state = JSON.parse(localStorage.getItem("dark")) ? JSON.parse(localStorage.getItem("dark")) : false;
     console.log(state)
     $("tbody>tr>td").addClass("darken");
     $("tbody>tr>th").addClass("darken");
@@ -89,29 +90,33 @@ export function pagination() {
 };
 
 export function gridToggle(state) {
+    var state = JSON.parse(localStorage.getItem("grid")) ? JSON.parse(localStorage.getItem("grid")) : false;
     console.log(state)
     if (state) {
         $("#dataTable").addClass("d-none");
         $("#gridTable").removeClass("d-none");
+        $("#gridSwitch").children().removeClass("fa-th").addClass("fa-table");
         state = true;
     }
     else {
         $("#dataTable").removeClass("d-none");
         $("#gridTable").addClass("d-none");
+        $("#gridSwitch").children().addClass("fa-th").removeClass("fa-table");
         state = false;
     }
     $("#gridSwitch").click(function () {
         if (state) {
             $("#dataTable").removeClass("d-none");
             $("#gridTable").addClass("d-none");
+            $("#gridSwitch").children().addClass("fa-th").removeClass("fa-table");
             state = false;
         }
         else {
             $("#dataTable").addClass("d-none");
             $("#gridTable").removeClass("d-none");
+            $("#gridSwitch").children().removeClass("fa-th").addClass("fa-table");
             state = true;
         }
         localStorage.setItem("grid", state);
     });
-
 };

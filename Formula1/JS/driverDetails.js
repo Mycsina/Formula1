@@ -6,6 +6,7 @@ var vm = function () {
     //---Variáveis locais
     var self = this;
     self.baseUri = ko.observable('http://192.168.160.58/Formula1/api/Drivers/Driver?id=');
+    self.extendedUri = ko.observable("http://192.168.160.58/Formula1/api/Statistics/Driver?id=")
     self.displayName = 'Driver Details';
     self.missing = "./portrait.png";
     self.error = ko.observable('');
@@ -19,7 +20,9 @@ var vm = function () {
     self.Number = ko.observable('');
     self.Races = ko.observableArray('');
     self.Url = ko.observable('');
-
+    self.Wins = ko.observable('');
+    self.RaceNumber = ko.observable('');
+    self.Career = ko.observableArray('');
     //--- Page Events
     self.activate = function (id) {
         console.log('CALL: getDriver...');
@@ -35,6 +38,65 @@ var vm = function () {
             self.Races(data.Races);
             self.Url(data.Url);
             main.hideLoading();
+        });
+        console.log('CALL: getDriverStats...');
+        var compUri = self.extendedUri() + getUrlParameter("id");
+        main.ajaxHelper(compUri, 'GET', self).done(function (data) {
+            console.log(data);
+            self.Wins(data.Wins);
+            self.RaceNumber(data.Races);
+            self.Career(data.Career);
+            const labels = [];
+            const points = [];
+            const positions = [];
+            const careerLength = self.Career().length;
+            for (var i = careerLength - 1; -1 < i; i--) {
+                labels.push(self.Career()[i].Year);
+            };
+            for (var i = careerLength - 1; -1 < i; i--) {
+                points.push(self.Career()[i].Points);
+            };
+            for (var i = careerLength - 1; -1 < i; i--) {
+                positions.push(self.Career()[i].Position)
+            };
+            const lineData = {
+                labels: labels,
+                datasets: [{
+                    label: "Points",
+                    backgroundColor: "rgb(255, 33, 33)",
+                    borderColor: "rgb(255, 33, 33)",
+                    data: points
+                },
+                {
+                    label: "Position",
+                    backgroundColor: "rgb(255,161,38)",
+                    borderColor: "rgb(255,161,38)",
+                    data: positions
+                }]
+            };
+            const lineConfig = {
+                type: "line",
+                data: lineData,
+                options: {}
+            }
+            new Chart($("#lineGraph"), lineConfig);
+            const pieData = {
+                labels: ["Win", "Losses"],
+                datasets: [{
+                    label: "Win Ratio",
+                    data: [self.Wins(), self.RaceNumber() - self.Wins()],
+                    backgroundColor: [
+                        "rgb(24,148,10)",
+                        "rgb(148,6,1)"
+                    ],
+                    hoverOffset: 4
+                }]
+            };
+            const pieConfig = {
+                type: "doughnut",
+                data: pieData
+            };
+            new Chart($("#pieGraph"), pieConfig);
         });
     };
     //--- Internal functions
@@ -63,8 +125,17 @@ var vm = function () {
     }
 };
 
+function driverStats() {
+    $("#statsToggler").click(function () {
+        $("#statsModal").modal("show", {
+            backdrop: 'static',
+            keyboard: false
+        })
+    });
+};
+
 $(document).ready(function () {
-    var dark = JSON.parse(localStorage.getItem("dark")) ? JSON.parse(localStorage.getItem("dark")) : false;
-    main.darkToggle(dark);
+    main.darkToggle();
+    driverStats();
     ko.applyBindings(new vm());
 });

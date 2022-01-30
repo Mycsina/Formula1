@@ -144,6 +144,9 @@
     <Content Include="Formula1\search.html" />
     <Content Include="Formula1\seasonDetails.html" />
     <Content Include="Formula1\seasons.html" />
+    <Content Include="Images\background\image1.jpg" />
+    <Content Include="Images\background\image2.jpg" />
+    <Content Include="Images\background\image3.jpg" />
     <Content Include="Images\favicon\android-chrome-192x192.png" />
     <Content Include="Images\favicon\android-chrome-512x512.png" />
     <Content Include="Images\favicon\apple-touch-icon.png" />

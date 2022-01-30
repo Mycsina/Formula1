@@ -2,4 +2,5 @@
 
 $(document).ready(function () {
     main.darkToggle();
+    main.searchToggle();
 });

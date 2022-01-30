@@ -6,8 +6,7 @@ var vm = function () {
     //---Variáveis locais
     var self = this;
     self.baseUri = ko.observable('http://192.168.160.58/Formula1/api/Countries/Country?id=');
-    self.displayName = 'Driver Details';
-    self.missing = "./portrait.png";
+    self.displayName = 'Country Details';
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
     //--- Data Record
@@ -54,5 +53,6 @@ var vm = function () {
 
 $(document).ready(function () {
     main.darkToggle();
+    main.searchToggle();
     ko.applyBindings(new vm());
 });

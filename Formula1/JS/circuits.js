@@ -6,7 +6,7 @@ var vm = function () {
     //---Variáveis locais
     var self = this;
     self.baseUri = ko.observable('http://192.168.160.58/Formula1/api/circuits');
-    self.displayName = 'Circuits List';
+    self.displayName = 'Circuits';
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
     self.records = ko.observableArray([]);
@@ -106,5 +106,6 @@ $(document).ready(function () {
     main.sortTable();
     main.gridToggle();
     Location();
+    main.searchToggle();
     ko.applyBindings(new vm());
 });

@@ -6,8 +6,7 @@ var vm = function () {
     //---Variáveis locais
     var self = this;
     self.baseUri = ko.observable('http://192.168.160.58/Formula1/api/Races/Race?id=');
-    self.displayName = 'Driver Details';
-    self.missing = "./portrait.png";
+    self.displayName = 'Race Details';
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
     //--- Data Record
@@ -71,5 +70,6 @@ $(document).ready(function () {
     main.darkToggle();
     main.sortTable();
     main.gridToggle();
+    main.searchToggle();
     ko.applyBindings(new vm());
 });

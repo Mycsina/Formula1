@@ -1,5 +1,5 @@
 ﻿export function darkToggle() {
-    var state = JSON.parse(localStorage.getItem("dark")) ? JSON.parse(localStorage.getItem("dark")) : false;
+    var state = JSON.parse(localStorage.getItem("dark")) ? JSON.parse(localStorage.getItem("dark")) : true;
     console.log(state)
     $("tbody>tr>td").addClass("darken");
     $("tbody>tr>th").addClass("darken");
@@ -84,9 +84,9 @@ export function pagination() {
             $(".pagination").addClass("pagination-sm")
         } else {
             $(".pagination").removeClass("pagination-sm")
-        }
-        }
-    )
+        };
+    }
+    );
 };
 
 export function gridToggle(state) {
@@ -94,29 +94,54 @@ export function gridToggle(state) {
     console.log(state)
     if (state) {
         $("#dataTable").addClass("d-none");
+        $(".tgSwitch").addClass("d-none");
         $("#gridTable").removeClass("d-none");
+        $(".gtSwitch").removeClass("d-none");
         $("#gridSwitch").children().removeClass("fa-th").addClass("fa-table");
         state = true;
     }
     else {
         $("#dataTable").removeClass("d-none");
+        $(".tgSwitch").removeClass("d-none");
         $("#gridTable").addClass("d-none");
+        $(".gtSwitch").addClass("d-none");
         $("#gridSwitch").children().addClass("fa-th").removeClass("fa-table");
         state = false;
     }
     $("#gridSwitch").click(function () {
         if (state) {
             $("#dataTable").removeClass("d-none");
+            $(".tgSwitch").removeClass("d-none");
             $("#gridTable").addClass("d-none");
+            $(".gtSwitch").addClass("d-none");
             $("#gridSwitch").children().addClass("fa-th").removeClass("fa-table");
             state = false;
         }
         else {
             $("#dataTable").addClass("d-none");
+            $(".tgSwitch").addClass("d-none");
             $("#gridTable").removeClass("d-none");
+            $(".gtSwitch").removeClass("d-none");
             $("#gridSwitch").children().removeClass("fa-th").addClass("fa-table");
             state = true;
         }
         localStorage.setItem("grid", state);
     });
+};
+
+export function searchToggle() {
+    $("#searchToggler").click(function () {
+        $("#searchModal").modal("show", {
+            backdrop: 'static',
+            keyboard: false
+        });
+    });
+    $('#search').keypress(function (event) {
+        if (event.keyCode == 13 || event.which == 13) {
+            $(this).submit()
+        }
+    });
+    $("#search").submit(function () {
+        window.location.href = window.location.href.split('?')[0] + "?q=" + this.value
+    })
 };

@@ -6,9 +6,8 @@ var vm = function () {
     //---Variáveis locais
     var self = this;
     self.baseUri = ko.observable('http://192.168.160.58/Formula1/api/Drivers/Driver?id=');
-    self.extendedUri = ko.observable("http://192.168.160.58/Formula1/api/Statistics/Driver?id=")
+    self.extendedUri = ko.observable("http://192.168.160.58/Formula1/api/Statistics/Driver?id=");
     self.displayName = 'Driver Details';
-    self.missing = "./portrait.png";
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
     //--- Data Record
@@ -40,7 +39,7 @@ var vm = function () {
             main.hideLoading();
         });
         console.log('CALL: getDriverStats...');
-        var compUri = self.extendedUri() + getUrlParameter("id");
+        var compUri = self.extendedUri() + id;
         main.ajaxHelper(compUri, 'GET', self).done(function (data) {
             console.log(data);
             self.Wins(data.Wins);
@@ -137,5 +136,6 @@ function driverStats() {
 $(document).ready(function () {
     main.darkToggle();
     driverStats();
+    main.searchToggle();
     ko.applyBindings(new vm());
 });

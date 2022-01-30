@@ -4,7 +4,11 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>ITW 2021/22 - Driver Details</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/Images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/Images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/Images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <title>F1 - Driver Details</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
@@ -22,6 +26,10 @@
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="drivers.html">Drivers</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="constructors.html">Constructors</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="circuits.html">Circuits</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="countries.html">Countries</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="nationality.html">Nationality</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="races.html">Races</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="seasons.html">Seasons</a></li>
                 </ul>
             </div>
             <nav>
@@ -30,6 +38,7 @@
                 </button>
                 <span id="darkToggler" class="navbar-text ms-3 h5"><i class="fa fa-moon-o" style="width: 20px auto"></i></span>
                 <span id="statsToggler" class="navbar-text ms-3 h5"><i class="fa fa-bar-chart" style="width: 20px auto"></i></span>
+                <span id="searchToggler" class="navbar-text ms-3 h5"><i class="fa fa-search" style="width: 20px auto"></i></span>
             </nav>
         </div>
     </nav>
@@ -112,6 +121,17 @@
                     <div class="container-fluid">
                         <canvas id="lineGraph"></canvas>
                         <canvas id="pieGraph"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="statsModelLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body justify-content-center darken darken-body">
+                    <div class="container-fluid">
+                        <input id="search" class="form-control form-control-lg darken-body border-secondary darken" onfocusout="this.value = ''" type="text" placeholder="Start typing :)">
                     </div>
                 </div>
             </div>

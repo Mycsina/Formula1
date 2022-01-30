@@ -49,7 +49,7 @@ var vm = function () {
         }).addTo(map);
         console.log(self.records()[0].CircuitId)
         for (var i = 0; i < self.records().length; i++) {
-            var link = '<a href="circuitDetails.html?id=' + self.records()[i].CircuitId + '">' + self.records()[i].Name + '</a>'
+            var link = '<a href="circuitsDetails.html?id=' + self.records()[i].CircuitId + '">' + self.records()[i].Name + '</a>'
             mapPointer(map, [self.records()[i].Lat, self.records()[i].Lng], link)
         }
     };
@@ -67,5 +67,6 @@ var vm = function () {
 
 $(document).ready(function () {
     main.darkToggle();
+    main.searchToggle();
     ko.applyBindings(new vm());
 });

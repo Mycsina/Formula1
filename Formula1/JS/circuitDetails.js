@@ -7,7 +7,6 @@ var vm = function () {
     var self = this;
     self.baseUri = ko.observable('http://192.168.160.58/Formula1/api/Circuits/Circuit?id=');
     self.displayName = 'Circuit Details';
-    self.missing = "./portrait.png";
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
     //--- Data Record
@@ -83,5 +82,6 @@ var vm = function () {
 
 $(document).ready(function () {
     main.darkToggle();
+    main.searchToggle();
     ko.applyBindings(new vm());
 });

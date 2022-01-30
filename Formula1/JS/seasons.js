@@ -6,8 +6,12 @@ var vm = function () {
     //---Variáveis locais
     var self = this;
     self.baseUri = ko.observable('http://192.168.160.58/Formula1/api/seasons');
-    self.displayName = 'Drivers List';
+    self.extendedUri = ko.observable("http://192.168.160.58/Formula1/api/Statistics/Champions");
+    self.anotherUri = ko.observable("http://192.168.160.58/Formula1/api/Statistics/CChampions")
+    self.displayName = 'Seasons List';
     self.error = ko.observable('');
+    self.Champions = ko.observableArray("");
+    self.CChampions = ko.observableArray("");
     self.passingMessage = ko.observable('');
     self.records = ko.observableArray([]);
     self.currentPage = ko.observable(1);
@@ -45,7 +49,7 @@ var vm = function () {
     };
     //--- Page Events
     self.activate = function (id) {
-        console.log('CALL: getDrivers...');
+        console.log('CALL: getSeasons...');
         var composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
         main.ajaxHelper(composedUri, 'GET', self).done(function (data) {
             console.log(data);
@@ -57,7 +61,18 @@ var vm = function () {
             self.pagesize(data.PageSize)
             self.totalPages(data.PageCount);
             self.totalRecords(data.Total);
+            //recordJoiner();
             //self.SetFavourites();
+        });
+        console.log('CALL: getSeasonStats...');
+        main.ajaxHelper(self.extendedUri(), 'GET', self).done(function (data) {
+            console.log(data);
+            self.Champions(data);
+        });
+        main.ajaxHelper(self.anotherUri(), "GET", self).done(function (data) {
+            console.log(data);
+            self.CChampions(data);
+            main.hideLoading();
         });
     };
     //--- Internal functions
@@ -65,6 +80,20 @@ var vm = function () {
         const start = Date.now();
         while (Date.now() - start < milliseconds);
     }
+
+    function recordJoiner() {
+        console.log(self.records())
+        for (var i = 0; i < self.records().length; i++) {
+            if (self.records()[i].Year == self.Champions()[i].Year) {
+                self.records()[i].DriverId = self.Champions()[i].DriverId;
+                self.records()[i].DriverName = self.Champions()[i].DriverName;
+            };
+            if (self.records()[i + 8].Year == self.CChampions()[i].Year) {
+                self.records()[i + 8].ConstructorId = self.CChampions()[i].ConstructorId;
+                self.records()[i + 8].ConstructorName = self.CChampions()[i].ConstructorName;
+            };
+        };
+    };
 
     function getUrlParameter(sParam) {
         var sPageURL = window.location.search.substring(1),
@@ -77,8 +106,8 @@ var vm = function () {
 
             if (sParameterName[0] === sParam) {
                 return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
-            }
-        }
+            };
+        };
 
     };
 
@@ -100,5 +129,6 @@ $(document).ready(function () {
     main.pagination();
     main.sortTable();
     main.gridToggle();
+    main.searchToggle();
     ko.applyBindings(new vm());
 });

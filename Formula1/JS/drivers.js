@@ -6,7 +6,7 @@ var vm = function () {
     //---Variáveis locais
     var self = this;
     self.baseUri = ko.observable('http://192.168.160.58/Formula1/api/drivers');
-    self.displayName = 'Drivers List';
+    self.displayName = 'Drivers';
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
     self.records = ko.observableArray([]);
@@ -100,5 +100,6 @@ $(document).ready(function () {
     main.pagination();
     main.sortTable();
     main.gridToggle();
+    main.searchToggle();
     ko.applyBindings(new vm());
 });

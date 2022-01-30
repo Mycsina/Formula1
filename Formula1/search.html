@@ -8,9 +8,9 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/Images/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/Images/favicon/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
-    <title>F1 - Circuit Search</title>
+    <title>F1 - Driver Details</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -19,7 +19,8 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top mb-0">
         <div class="container">
-            <a class="navbar-brand" href="index.html"><img src="https://logodownload.org/wp-content/uploads/2016/11/formula-1-logo-7.png" width="60"></a>
+            <a class="navbar-brand" href="index.html">
+                <img src="https://logodownload.org/wp-content/uploads/2016/11/formula-1-logo-7.png" width="60"></a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="drivers.html">Drivers</a></li>
@@ -35,75 +36,72 @@
                 <button class="navbar-toggler shadow" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <span id="darkToggler" class="navbar-text ms-3 h5"><i class="fa fa-moon-o" style="width:20px auto"></i></span>
-                <span id="gridSwitch" class="navbar-text ms-3 h5"><i class="fa fa-th" style="width:20px auto"></i></span>
-                <span id="globe" class="navbar-text ms-3 h5"><i class="fa fa-globe" style="width:20px auto"></i></span>
+                <span id="darkToggler" class="navbar-text ms-3 h5"><i class="fa fa-moon-o" style="width: 20px auto"></i></span>
+                <span id="gridSwitch" class="navbar-text ms-3 h5"><i class="fa fa-th" style="width: 20px auto"></i></span>
                 <span id="searchToggler" class="navbar-text ms-3 h5"><i class="fa fa-search" style="width: 20px auto"></i></span>
             </nav>
         </div>
     </nav>
-    <!-- Working Area -->
-    <div class="container">
-        <div class="border-bottom pt-4 pb-2 mb-3 darken">
-            <h2 data-bind="text:displayName"></h2>
-        </div>
-        <div class="row small">
-            <p class=" col-4 mr-auto pt-2 darken">
-            </p>
-            <div class="col-9 my-3 pt-0">
-            </div>
-            <div class="col-3 justify-content-end">
-                <div class="input-group rounded darken-body darken">
-                  <form action="circuitSearch.html">
-                    <input type="search" class="form-control rounded darken darken-body border-end-0" name="year" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                  </form>
-                        <span class="input-group-text darken-body darken border-start-0" id="search-addon" style="transform:translateX(-3px)">
-                    <i class="fa fa-search"></i>
-                  </span>
-                </div>
-            </div>
+    <!-- Work Area-->
+    <div class="main p-0 m-5">
+        <div class="d-flex flex-column flex-shrink-0 p-3 darken body-darken" style="width: 280px;">
+            <a data-bind="attr: { href:urlBuilder('Start')}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none">
+                <span class="fs-4">Search</span>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <a data-bind="attr: { href:urlBuilder('Circuits')}" class="nav-link" aria-current="">Circuits
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a data-bind="attr: { href:urlBuilder('Constructors')}" class="nav-link">Constructors
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a data-bind="attr: { href:urlBuilder('Countries')}" class="nav-link">Countries
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a data-bind="attr: { href:urlBuilder('Drivers')}" class="nav-link">Drivers
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a data-bind="attr: { href:urlBuilder('Races')}" class="nav-link">Races
+                    </a>
+                </li>
+            </ul>
         </div>
         <table id="dataTable" class="table table-striped table-sm small d-none">
             <thead class="darken darken-body">
                 <tr>
-                    <th scope="col">Id</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Country</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Id</th>
                     <th scope="col" class="text-right"></th>
                 </tr>
             </thead>
             <tbody class="" data-bind="foreach: records">
                 <tr>
-                    <td class="align-middle" data-bind="text:CircuitId"></td>
-                    <td class="align-middle"><a style="" data-bind="text:Name, attr: { href:'./circuitsDetails.html?id=' + CircuitId}"></a></td>
-                    <td class="align-middle" data-bind="text:Country"></td>
+                    <td class="align-middle"><a style="" data-bind="text:$root.getText($data), attr: { href: $root.urlHelper($root.getId($data), $root.getSource($data))}"></a></td>
+                    <td class="align-middle" data-bind="text:$root.getSource($data)"></td>
+                    <td class="align-middle" data-bind="text:$root.getId($data)"></td>
                     <td class="text-end">
-                        <button class="btn btn-default btn-sm darken darken-body border-secondar"><i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + CircuitId }" title="Selecione para adicionar aos favoritos"></i></button>
+                        <button class="btn btn-default btn-sm darken darken-body border-secondary"><i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + Text }" title="Selecione para adicionar aos favoritos"></i></button>
                     </td>
                 </tr>
             </tbody>
         </table>
         <div id="gridTable" class="container row justify-content-center" data-bind="foreach: records">
-               <div class="card m-3 darken border-5 justify-content-center" style="width: 18rem;">
-               <a data-bind="attr: { href:'./circuitsDetails.html?id=' + CircuitId}">
-                    <img class="card-img-top" data-bind="attr:{src: ImageUrl != null && ImageUrl.length != 0 ? ImageUrl :  '/Images/portrait.png'}" />
-               </a>
-               <ul class="list-group list-group-flush">
-                    <li class="list-group-item" data-bind="text:Name"></li>
-                    <li class="list-group-item" data-bind="text:Country"></li>
-                    <li class="list-group-item" data-bind="text:'Id: ' + CircuitId"></li>
-               </ul>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="statsModelLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-body justify-content-center darken darken-body">
-                    <div class="container-fluid">
-                        <input id="search" class="form-control form-control-lg darken-body border-secondary darken" onfocusout="this.value = ''" type="text" placeholder="Start typing :)">
-                    </div>
-                </div>
+            <div class="card m-3 darken border-5 justify-content-center" style="width: 18rem;">
+                <a data-bind="attr: { href: $root.urlHelper($root.getId($data), $root.getSource($data))}">
+                    <img class="card-img-top" data-bind="attr:{src: typeof ImageUrl !== 'undefined' && ImageUrl != null && ImageUrl.length != 0 ? ImageUrl :  '/Images/portrait.png'}" />
+                </a>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" data-bind="text:$root.getText($data)"></li>
+                    <li class="list-group-item" data-bind="text:'Type: ' + $root.getSource($data)"></li>
+                    <li class="list-group-item" data-bind="text:'Id: ' + $root.getId($data)"></li>
+                </ul>
             </div>
         </div>
     </div>
@@ -125,7 +123,18 @@
             </div>
         </div>
     </div>
-    <!-- End of Working Area -->
+    <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="statsModelLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body justify-content-center darken darken-body">
+                    <div class="container-fluid">
+                        <input id="search" class="form-control form-control-lg darken-body border-secondary darken" onfocusout="this.value = ''" type="text" placeholder="Start typing :)">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Work Area -->
     <nav class="navbar navbar-light bg-light">
         <div class="container small">
             <div class="navbar-text">&copy;  Introdução as Tecnologias Web - 2021/22</div>
@@ -138,6 +147,7 @@
     <script src="../Scripts/bootstrap.bundle.min.js"></script>
     <script src="../Scripts/knockout-3.5.1.js"></script>
     <script src="../Scripts/jquery-3.6.0.min.js"></script>
-    <script type="module" src="JS/circuitSearch.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="JS/search.js"></script>
 </body>
 </html>

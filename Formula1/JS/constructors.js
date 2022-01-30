@@ -103,5 +103,6 @@ $(document).ready(function () {
     main.pagination();
     main.sortTable();
     main.gridToggle();
+    main.searchToggle();
     ko.applyBindings(new vm());
 });

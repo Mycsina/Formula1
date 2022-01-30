@@ -4,7 +4,11 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>ITW 2021/22 - Constructor Details</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/Images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/Images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/Images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <title>F1 - Season Details</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
@@ -15,21 +19,26 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top mb-0">
         <div class="container">
-            <a class="navbar-brand" href="index.html"><img src="https://logodownload.org/wp-content/uploads/2016/11/formula-1-logo-7.png" width="60"></a>
+            <a class="navbar-brand" href="index.html">
+                <img src="https://logodownload.org/wp-content/uploads/2016/11/formula-1-logo-7.png" width="60"></a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="drivers.html">Drivers</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="constructors.html">Constructors</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="circuits.html">Circuits</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="countries.html">Countries</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="nationality.html">Nationality</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="races.html">Races</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="seasons.html">Seasons</a></li>
                 </ul>
             </div>
             <nav>
                 <button class="navbar-toggler shadow" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <span id="darkToggler" class="navbar-text ms-3 h5"><i class="fa fa-moon-o" style="width:20px auto"></i></span>
-                <span id="gridSwitch" class="navbar-text ms-3 h5"><i class="fa fa-th" style="width:20px auto"></i></span>
-                <span id="statsToggler" class="navbar-text ms-3 h5"><i class="fa fa-bar-chart" style="width: 20px auto"></i></span>
+                <span id="darkToggler" class="navbar-text ms-3 h5"><i class="fa fa-moon-o" style="width: 20px auto"></i></span>
+                <span id="gridSwitch" class="navbar-text ms-3 h5"><i class="fa fa-th" style="width: 20px auto"></i></span>
+                <span id="searchToggler" class="navbar-text ms-3 h5"><i class="fa fa-search" style="width: 20px auto"></i></span>
             </nav>
         </div>
     </nav>
@@ -40,7 +49,7 @@
         </div>
         <!-- ko if:Year() > 1900 -->
         <div class="container ps-0">
-           <div class="accordion darken my-3" id="resultsAccordion">
+            <div class="accordion darken my-3" id="resultsAccordion">
                 <div class="accordion-item border-secondary">
                     <h2 class="accordion-header" id="headingOne">
                         <button class="accordion-button darken darken-body" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -49,7 +58,7 @@
                     </h2>
                     <div id="collapseOne" class="accordion-collapse collapse darken-body" aria-labelledby="headingOne" data-bs-parent="#resultsAccordion">
                         <div class="accordion-body">
-                            <table id="dataTable" class="table table-striped table-sm small d-none">
+                            <table id="dataTable" class="table table-striped table-sm small d-none tgSwitch">
                                 <thead class="bg-dark text-light">
                                     <tr>
                                         <th scope="col">RaceId</th>
@@ -76,19 +85,99 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <div id="gridTable" class="container row justify-content-center" data-bind="foreach: Races">
+                            <div id="gridTable" class="container row justify-content-center gtSwitch" data-bind="foreach: Races">
                                 <div class="card m-3 darken border-5 justify-content-center" style="width: 18rem;">
-                                   <a data-bind="attr: { href:'./raceDetails.html?id=' + RaceId}">
+                                    <a data-bind="attr: { href:'./raceDetails.html?id=' + RaceId}">
                                         <img class="card-img-top" src='/Images/generic_track.png' />
-                                   </a>
-                                   <ul class="list-group list-group-flush">
-                                       <li class="list-group-item" data-bind="text:CircuitName"></li>
-                                       <li class="list-group-item" data-bind="text:Name"></li>
-                                       <li class="list-group-item" data-bind="text:'Round ' + Round"></li>
-                                       <li class="list-group-item" data-bind="text:'Date: ' + Date.split('T')[0]"></li>
-                                       <li class="list-group-item" data-bind="text:'Time: ' + Time"></li>
-                                       <li class="list-group-item"><a class="text-muted" data-bind="attr: {href:Url, target:'_blank'}"><span data-bind="text: Url"></span></a></li>
-                                   </ul>
+                                    </a>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item" data-bind="text:CircuitName"></li>
+                                        <li class="list-group-item" data-bind="text:Name"></li>
+                                        <li class="list-group-item" data-bind="text:'Round ' + Round"></li>
+                                        <li class="list-group-item" data-bind="text:'Date: ' + Date.split('T')[0]"></li>
+                                        <li class="list-group-item" data-bind="text:'Time: ' + Time"></li>
+                                        <li class="list-group-item"><a class="text-muted" data-bind="attr: {href:Url, target:'_blank'}"><span data-bind="text: Url"></span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item border-secondary">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button darken darken-body" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                            Standings
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse darken-body" aria-labelledby="headingTwo" data-bs-parent="#resultsAccordion">
+                        <div class="accordion-body row row-cols-2">
+                            <div class="col-lg-6">
+                                <h5 class="text-center">Drivers</h5>
+                                <table id="" class="table table-striped table-sm small d-none tgSwitch">
+                                    <thead class="darken darken-body">
+                                        <tr>
+                                            <th scope="col">DriverId</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Points</th>
+                                            <th scope="col">Position</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="" data-bind="foreach: DriverStandings">
+                                        <tr>
+                                            <td class="align-middle" data-bind="text:DriverId"></td>
+                                            <td class="align-middle"><a style="" data-bind="text:Name, attr: { href:'./driverDetails.html?id=' + DriverId}"></a></td>
+                                            <td class="align-middle" data-bind="text:Points"></td>
+                                            <td class="align-middle" data-bind="text:Position"></td>
+                                            <td class="text-end">
+                                                <button class="btn btn-default btn-sm darken darken-body border-secondar"><i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + DriverId }" title="Selecione para adicionar aos favoritos"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="container row justify-content-center gtSwitch" data-bind="foreach: DriverStandings">
+                                    <div class="card m-3 darken border-5 justify-content-center" style="width: 18rem;">
+                                        <a data-bind="attr: { href:'./driverDetails.html?id=' + DriverId}">
+                                            <img class="card-img-top" data-bind="attr:{src: ImageUrl != null && ImageUrl.length != 0 ? ImageUrl :  '/Images/generic_car.svg'}" />
+                                        </a>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item" data-bind="text:Name"></li>
+                                            <li class="list-group-item" data-bind="text:'Position: ' + Position"></li>
+                                            <li class="list-group-item" data-bind="text:'Points: ' + Points"></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <h5 class="text-center">Constructors</h5>
+                                <table id="" class="table table-striped table-sm small d-none tgSwitch">
+                                    <thead class="darken darken-body">
+                                        <tr>
+                                            <th scope="col">ConstructorId</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Points</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="" data-bind="foreach: ConstructorStandings">
+                                        <tr>
+                                            <td class="align-middle" data-bind="text:ConstructorId"></td>
+                                            <td class="align-middle"><a style="" data-bind="text:Name, attr: { href:'./constructorDetails.html?id=' + ConstructorId}"></a></td>
+                                            <td class="align-middle" data-bind="text:Points"></td>
+                                            <td class="text-end">
+                                                <button class="btn btn-default btn-sm darken darken-body border-secondar"><i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + ConstructorId }" title="Selecione para adicionar aos favoritos"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="container row justify-content-center gtSwitch" data-bind="foreach: ConstructorStandings">
+                                    <div class="card m-3 darken border-5 justify-content-center" style="width: 18rem;">
+                                        <a data-bind="attr: { href:'./constructorDetails.html?id=' + ConstructorId}">
+                                            <img class="card-img-top" data-bind="attr:{src: ImageUrl != null && ImageUrl.length != 0 ? ImageUrl :  '/Images/generic_car.svg'}" />
+                                        </a>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item" data-bind="text:Name"></li>
+                                            <li class="list-group-item" data-bind="text:'Points ' + Points"></li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -111,6 +200,17 @@
                 <div class="modal-body text-center">
                     <div class="spinner-grow text-danger" role="status">
                         <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="statsModelLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body justify-content-center darken darken-body">
+                    <div class="container-fluid">
+                        <input id="search" class="form-control form-control-lg darken-body border-secondary darken" onfocusout="this.value = ''" type="text" placeholder="Start typing :)">
                     </div>
                 </div>
             </div>

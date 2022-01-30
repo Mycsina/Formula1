@@ -3,6 +3,11 @@
     margin: 56px 0 0 0;
 }
 
+.main {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
 a, a:hover, a:visited {
     color: inherit;
     text-decoration: inherit;
@@ -47,7 +52,13 @@ thead > tr > th {
     cursor: pointer;
 }
 
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    background-color: firebrick;
+}
 
+.nav-link {
+    color:inherit
+}
 /* button default
 ---------------------------- */
 .btn-default {

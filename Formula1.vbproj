@@ -92,7 +92,7 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Formula1\circuitDetails.html" />
+    <Content Include="Formula1\circuitsDetails.html" />
     <Content Include="Formula1\circuitLocation.html" />
     <Content Include="Formula1\circuits.html" />
     <Content Include="Formula1\circuitSearch.html" />
@@ -134,14 +134,22 @@
     <Content Include="Formula1\JS\nationalityDetails.js" />
     <Content Include="Formula1\JS\raceDetails.js" />
     <Content Include="Formula1\JS\races.js" />
+    <Content Include="Formula1\JS\search.js" />
     <Content Include="Formula1\JS\seasonDetails.js" />
     <Content Include="Formula1\JS\seasons.js" />
     <Content Include="Formula1\nationality.html" />
     <Content Include="Formula1\nationalityDetails.html" />
     <Content Include="Formula1\raceDetails.html" />
     <Content Include="Formula1\races.html" />
+    <Content Include="Formula1\search.html" />
     <Content Include="Formula1\seasonDetails.html" />
     <Content Include="Formula1\seasons.html" />
+    <Content Include="Images\favicon\android-chrome-192x192.png" />
+    <Content Include="Images\favicon\android-chrome-512x512.png" />
+    <Content Include="Images\favicon\apple-touch-icon.png" />
+    <Content Include="Images\favicon\favicon-16x16.png" />
+    <Content Include="Images\favicon\favicon-32x32.png" />
+    <Content Include="Images\favicon\favicon.ico" />
     <Content Include="Images\generic_car.svg" />
     <Content Include="Formula1\CSS\index.css" />
     <Content Include="Formula1\index.html" />
@@ -158,6 +166,7 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Images\favicon\site.webmanifest" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />

@@ -7,7 +7,6 @@ var vm = function () {
     var self = this;
     self.baseUri = ko.observable('http://192.168.160.58/Formula1/api/Constructors/Constructor?id=');
     self.displayName = 'Constructor Details';
-    self.missing = "./portrait.png";
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
     //--- Data Record
@@ -68,5 +67,6 @@ var vm = function () {
 
 $(document).ready(function () {
     main.darkToggle();
+    main.searchToggle();
     ko.applyBindings(new vm());
 });
